@@ -1,30 +1,74 @@
-# LeLo SaaS landing
+# LeLo — SaaS Landing Page
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+A modern, animated SaaS landing page for **LeLo** — a fictional SaaS product concept. Built with Next.js 14, React 18, TypeScript, and Tailwind CSS v4. Originally generated with [v0.app](https://v0.app).
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/gileb64375-5584s-projects/v0-le-lo-saa-s-landing)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/bKjTjIiuBFV)
+## What it does
 
-## Overview
+A single-page marketing site with:
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+- **Sticky header** with navigation and theme-aware branding
+- **Hero section** with animated headline and CTAs
+- **Animated features section** (GSAP scroll-triggered animations)
+- **Pricing section** with plan tiers
+- **FAQ section** (accordion)
+- **Animated CTA section** and full **footer**
+- Custom animated UI primitives: floating paths, infinite sliders, particle text effect, progressive blur, animated gradients (Three.js / framer-motion)
+
+All client-side rendered sections; no backend, no API routes.
+
+## Tech stack
+
+- Next.js 14.2.16 + React 18 + TypeScript
+- Tailwind CSS v4 (@tailwindcss/postcss)
+- Radix UI primitives, shadcn-style `ui/` components
+- GSAP (@gsap/react), framer-motion, Three.js (@react-three/fiber)
+- next-themes (dark/light), Vercel Analytics
+
+## Quick start
+
+```sh
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build
+npm run start      # serve production build
+```
+
+Requires Node.js 18+.
+
+## Project structure
+
+```
+├── app/
+│   ├── layout.tsx      # root layout + metadata
+│   ├── page.tsx        # landing page composition
+│   └── globals.css     # global styles
+├── components/
+│   ├── hero-section.tsx, animated-features-section.tsx,
+│   ├── pricing-section.tsx, faq-section.tsx,
+│   ├── animated-cta-section.tsx, header.tsx, footer.tsx,
+│   └── ui/             # animated UI primitives
+├── lib/                # utilities
+├── public/             # static assets
+└── next.config.mjs
+```
+
+## Environment variables
+
+None required. `@vercel/analytics` works out of the box on Vercel; no keys to configure for a local or static deploy.
 
 ## Deployment
 
-Your project is live at:
+The site has no API routes or server actions, so it can be deployed as a **static export**:
 
-**[https://vercel.com/gileb64375-5584s-projects/v0-le-lo-saa-s-landing](https://vercel.com/gileb64375-5584s-projects/v0-le-lo-saa-s-landing)**
+- `output: 'export'` is set in `next.config.mjs`, and `basePath: '/le-lo-saa-s-landing'` targets the GitHub Pages subpath. **Remove `basePath` (and `output: 'export'`) for root-domain / Vercel / Netlify deploys.**
 
-## Build your app
+Build output lands in `out/` — host it on any static host.
 
-Continue building your app on:
+## Notes
 
-**[https://v0.app/chat/projects/bKjTjIiuBFV](https://v0.app/chat/projects/bKjTjIiuBFV)**
+- ESLint and TypeScript errors are ignored during builds (`ignoreDuringBuilds` / `ignoreBuildErrors` in `next.config.mjs`) — tighten these before production use.
+- Images are set to `unoptimized` in the config.
 
-## How It Works
+---
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+Built by Girish Lade · [ladestack.in](https://ladestack.in)
